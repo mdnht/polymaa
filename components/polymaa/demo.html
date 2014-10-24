@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>polymaa-element Demo</title>
+
+  <script src="../platform/platform.js"></script>
+
+  <link rel="import" href="../core-dropdown-menu/core-dropdown-menu.html">
+  <link rel="import" href="../polymaa-def/polymaa-pedobear.html">
+  <link rel="import" href="../polymaa-def/polymaa-great-men.html">
+  
+  <link rel="import" href="polymaa.html">
+
+</head>
+<body unresolved>
+  <p>An example of using <code>&lt;polymaa-element&gt;</code></p>
+  <template id="polymaaDemo" is="auto-binding" >
+	   <core-dropdown-menu id="categoryList" valueattr="label">
+	   		<template repeat="{{asset in $.meta.list}}">
+	   			<core-item label="{{asset.id}}"></core-item>
+	   		</template>
+	   </core-dropdown-menu>
+     <core-dropdown-menu id="aaList" valueattr="label">
+       <template repeat="{{aaName in $.meta.metaData[$.categoryList.selected].aaNames}}">
+          <core-item label="{{aaName}}"></core-item>
+        </template>
+     </core-dropdown-menu>
+	   <polymaa-element aa="{{$.categoryList.selected}}:{{$.aaList.selected}}"></polymaa-element>
+	   <script>
+        var cs = document.querySelector("#categoryList");
+        var as = document.querySelector("#aaList");
+	   		cs.addEventListener("core-select", function(event){
+          if(event.detail.isSelected)
+          {
+             as.selected = null;
+          }
+	   		})
+	   </script>
+  </template>
+  <polymaa-set id="meta"></polymaa-set>
+</body>
+</html>

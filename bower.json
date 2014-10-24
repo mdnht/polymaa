@@ -1,0 +1,7 @@
+{
+  "name": "polymaa#gh-pages",
+  "private": true,
+  "dependencies": {
+    "polymaa": "mdnht/polymaa#master"
+  }
+}
